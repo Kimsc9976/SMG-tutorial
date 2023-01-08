@@ -1,0 +1,18 @@
+### have to install ###
+npm install mysql
+npm install body-parser
+npm install sanitize-html
+npm install uuid
+npm install express
+npm install jsonwebtoken
+npm install rand-token
+
+
+
+npm install socket.io
+npm install socket.io-client
+
+## didn't use
+## npm install express-session
+## npm install cookie
+## npm install ws
