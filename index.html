@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Minimal working example</title>
+</head>
+<body>
+    <ul id="chat"></ul>
+    <form id = "msg" action = "">
+      <input id = "input" autocomplete="off"><button>Send</button>
+    </form>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src = "./src/streaming/webmic.js"></script>
+    <br>
+    <audio id = "user_voice" controls></audio>
+    <input type=button value="get Mic" onclick="{getMic()}">
+    <script>
+        const socket = io();
+        const newItem = (content) => {
+          let item = document.createElement('li');
+          item.innerText = content;
+          return item;
+        };
+        let chat = document.getElementById('chat');
+        let message = document.getElementById('msg');
+        let input = document.getElementById('input');
+
+        message.addEventListener("submit", (event) => {
+          event.preventDefault();
+          if(input.value){
+            console.log("emit", input.value);
+            socket.emit("chat meessage", input.value);
+            input.value = '';
+          }
+        })
+
+        socket.on('chat message', function(msg) {
+          let item = newItem(msg);
+          chat.appendChild(item);
+          window.scrollTo(0, document.body.scrollHeight);
+        });
+
+        let voice_talk = document.getElementById("user_voice");
+
+
+
+    </script>
+</body>
+</html>
